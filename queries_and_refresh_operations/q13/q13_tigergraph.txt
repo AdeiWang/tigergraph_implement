@@ -1,0 +1,25 @@
+CREATE OR REPLACE OPENCYPHER QUERY q13_tigergraph(
+    STRING word1,
+    STRING word2
+) FOR GRAPH TPCH_G {
+
+  MATCH
+    (o:G_ORDERS)
+      -[:G_ORDERS_CUSTOMER]->(c:G_CUSTOMER)
+
+  WHERE NOT (
+    instr(o.o_comment, $word1) >= 0
+    AND instr(o.o_comment, $word2) >= 0
+  )
+
+  WITH
+    c,
+    COUNT(o) AS order_count
+
+  RETURN
+    order_count AS C_COUNT,
+    COUNT(c) AS CUSTDIST
+
+  ORDER BY CUSTDIST DESC,
+           C_COUNT DESC
+}

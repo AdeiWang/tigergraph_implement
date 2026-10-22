@@ -1,0 +1,33 @@
+CREATE OR REPLACE OPENCYPHER QUERY q8_tigergraph_neo4j_compatible(
+    STRING selected_region,
+    STRING selected_type,
+    STRING selected_nation
+)
+FOR GRAPH TPCH_G {
+
+  MATCH
+    (r:G_REGION)<-[:G_NATION_REGION]-(n2:G_NATION)
+      <-[:G_SUPPLIER_NATION]-(s:G_SUPPLIER)
+      <-[:G_PARTSUPP_SUPPLIER]-(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_PART]->(p:G_PART),
+    (l:G_LINEITEM)-[:G_LINEITEM_PARTSUPP]->(ps),
+    (l)-[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+      -[:G_ORDERS_CUSTOMER]->(c:G_CUSTOMER)
+      -[:G_CUSTOMER_NATION]->(n1:G_NATION)
+
+  WHERE r.r_name = $selected_region
+    AND p.p_type = $selected_type
+    AND o.o_orderdate >= to_datetime("1995-01-01")
+    AND o.o_orderdate <  to_datetime("1997-01-01")
+
+  RETURN year(l.l_shipdate) AS o_year,
+         SUM(
+           CASE WHEN n2.n_name = $selected_nation
+                THEN l.l_extendedprice * (1 - l.l_discount)
+                ELSE 0.0
+           END
+         ) AS selected_volume,
+         SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_volume
+
+  ORDER BY o_year
+}

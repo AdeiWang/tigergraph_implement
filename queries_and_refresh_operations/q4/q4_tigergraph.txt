@@ -1,0 +1,21 @@
+CREATE OR REPLACE OPENCYPHER QUERY q4_tigergraph(
+    DATETIME start_date,
+    DATETIME end_date
+)
+FOR GRAPH TPCH_G {
+
+  MATCH (l:G_LINEITEM)
+        -[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+
+  WHERE o.o_orderdate >= $start_date
+    AND o.o_orderdate < $end_date
+    AND l.l_commitdate < l.l_receiptdate
+
+  WITH o.o_orderpriority AS orderpriority,
+       COUNT(DISTINCT(o)) AS order_count
+
+  RETURN orderpriority,
+         order_count
+
+  ORDER BY orderpriority ASC
+}

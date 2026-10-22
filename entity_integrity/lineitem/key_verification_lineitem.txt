@@ -1,0 +1,15 @@
+CREATE OR REPLACE OPENCYPHER QUERY key_verification_lineitem() FOR GRAPH TPCH_G {
+
+  MATCH
+    (l1:G_LINEITEM)
+      -[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+      <-[:G_LINEITEM_ORDERS]-(l2:G_LINEITEM)
+
+  WHERE o.o_orderkey = 1
+    AND l1.l_linenumber = 9
+    AND l2.l_linenumber = 9
+    AND getvid(l1) <> getvid(l2)
+
+  RETURN getvid(l1) AS l1_id,
+         getvid(l2) AS l2_id
+}

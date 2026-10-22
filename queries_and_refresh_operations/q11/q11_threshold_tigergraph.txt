@@ -1,0 +1,11 @@
+CREATE OR REPLACE OPENCYPHER QUERY q11_threshold_tigergraph(
+  STRING selected_nation,
+  FLOAT fraction
+) FOR GRAPH TPCH_G {
+  MATCH (ps:G_PARTSUPP)
+        -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+        -[:G_SUPPLIER_NATION]->(n:G_NATION)
+  WHERE n.n_name = $selected_nation
+  WITH SUM(ps.ps_supplycost * ps.ps_availqty) AS total_value
+  RETURN total_value * $fraction AS threshold
+}

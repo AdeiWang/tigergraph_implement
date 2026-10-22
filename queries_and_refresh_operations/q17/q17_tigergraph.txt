@@ -1,0 +1,28 @@
+CREATE OR REPLACE OPENCYPHER QUERY q17_tigergraph(
+    STRING selected_brand,
+    STRING selected_container
+) FOR GRAPH TPCH_G {
+
+  MATCH
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_PARTSUPP]->(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_PART]->(p:G_PART)
+
+  WITH
+    p,
+    AVG(l.l_quantity) AS qty_average
+
+  MATCH
+    (l2:G_LINEITEM)
+      -[:G_LINEITEM_PARTSUPP]->(ps2:G_PARTSUPP)
+      -[:G_PARTSUPP_PART]->(p)
+
+  WHERE p.p_brand = $selected_brand
+    AND p.p_container = $selected_container
+    AND l2.l_quantity < 0.2 * qty_average
+
+  WITH
+    SUM(l2.l_extendedprice / 7.0) AS avg_yearly
+
+  RETURN avg_yearly
+}

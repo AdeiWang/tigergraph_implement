@@ -1,0 +1,6 @@
+CREATE OR REPLACE OPENCYPHER QUERY rf1_create_lineitem_partsupp_edge(
+    VERTEX<RF_LINEITEM> l,
+    VERTEX<RF_PARTSUPP> ps
+) FOR GRAPH TPCH_RF_G {
+  CREATE (l)-[:RF_LINEITEM_PARTSUPP]->(ps)
+}

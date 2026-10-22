@@ -1,0 +1,19 @@
+CREATE OR REPLACE QUERY ri_verify_clean_gsql() FOR GRAPH TPCH_G {
+  CcActive = SELECT c FROM G_CUSTOMER:c WHERE c.ri_active != 0;
+  CcNegative = SELECT c FROM G_CUSTOMER:c WHERE c.c_custkey < 0;
+  OcActive = SELECT o FROM G_ORDERS:o WHERE o.ri_active != 0;
+  OcNegative = SELECT o FROM G_ORDERS:o WHERE o.o_orderkey < 0;
+  PcActive = SELECT p FROM G_PART:p WHERE p.ri_active != 0;
+  PcNegative = SELECT p FROM G_PART:p WHERE p.p_partkey < 0;
+  ScActive = SELECT s FROM G_SUPPLIER:s WHERE s.ri_active != 0;
+  ScNegative = SELECT s FROM G_SUPPLIER:s WHERE s.s_suppkey < 0;
+
+  PRINT CcActive.size() AS cc_active_count,
+        CcNegative.size() AS cc_negative_count,
+        OcActive.size() AS oc_active_count,
+        OcNegative.size() AS oc_negative_count,
+        PcActive.size() AS pc_active_count,
+        PcNegative.size() AS pc_negative_count,
+        ScActive.size() AS sc_active_count,
+        ScNegative.size() AS sc_negative_count;
+}

@@ -1,0 +1,31 @@
+CREATE OR REPLACE OPENCYPHER QUERY q5_tigergraph(
+    STRING selected_region,
+    DATETIME start_date,
+    DATETIME end_date
+)
+FOR GRAPH TPCH_G {
+
+  MATCH
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+      -[:G_ORDERS_CUSTOMER]->(c:G_CUSTOMER)
+      -[:G_CUSTOMER_NATION]->(n:G_NATION)
+      -[:G_NATION_REGION]->(r:G_REGION),
+
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_PARTSUPP]->(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+      -[:G_SUPPLIER_NATION]->(n:G_NATION)
+
+  WHERE r.r_name = $selected_region
+    AND o.o_orderdate >= $start_date
+    AND o.o_orderdate <  $end_date
+
+  WITH n.n_name AS nation,
+       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+
+  RETURN nation,
+         revenue
+
+  ORDER BY revenue DESC
+}

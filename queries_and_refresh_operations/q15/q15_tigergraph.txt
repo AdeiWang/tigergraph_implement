@@ -1,0 +1,31 @@
+CREATE OR REPLACE OPENCYPHER QUERY q15_tigergraph(
+    DATETIME start_date,
+    DATETIME end_date
+) FOR GRAPH TPCH_G {
+
+  MATCH
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_PARTSUPP]->(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+
+  WHERE l.l_shipdate >= $start_date
+    AND l.l_shipdate <  $end_date
+
+  WITH s.s_suppkey AS supplier_no,
+       s.s_name AS name,
+       s.s_address AS address,
+       s.s_phone AS phone,
+       SUM(
+         l.l_extendedprice * (1 - l.l_discount)
+       ) AS total_revenue
+
+  RETURN supplier_no,
+         name,
+         address,
+         phone,
+         total_revenue
+
+  ORDER BY total_revenue DESC
+
+  LIMIT 1
+}

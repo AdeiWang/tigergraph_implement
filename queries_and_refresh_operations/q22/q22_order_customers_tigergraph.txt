@@ -1,0 +1,11 @@
+CREATE OR REPLACE OPENCYPHER QUERY q22_order_customers_tigergraph(
+  STRING code1, STRING code2, STRING code3, STRING code4,
+  STRING code5, STRING code6, STRING code7
+) FOR GRAPH TPCH_G {
+  MATCH (o:G_ORDERS)-[:G_ORDERS_CUSTOMER]->(c:G_CUSTOMER)
+  WHERE SUBSTRING(c.c_phone, 0, 2) IN
+        [$code1, $code2, $code3, $code4, $code5, $code6, $code7]
+  RETURN c.c_custkey AS customer_key,
+         COUNT(DISTINCT o.o_orderkey) AS order_count
+  ORDER BY customer_key
+}

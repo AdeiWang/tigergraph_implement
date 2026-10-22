@@ -1,0 +1,21 @@
+CREATE OR REPLACE OPENCYPHER QUERY q6_tigergraph(
+    DATETIME start_date,
+    DATETIME end_date,
+    FLOAT min_discount,
+    FLOAT max_discount,
+    INT selected_quantity
+)
+FOR GRAPH TPCH_G {
+
+  MATCH (l:G_LINEITEM)
+
+  WHERE l.l_shipdate >= $start_date
+    AND l.l_shipdate <  $end_date
+    AND l.l_discount >= $min_discount
+    AND l.l_discount <= $max_discount
+    AND l.l_quantity < $selected_quantity
+
+  WITH SUM(l.l_extendedprice * l.l_discount) AS revenue
+
+  RETURN revenue
+}

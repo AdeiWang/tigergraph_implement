@@ -1,0 +1,42 @@
+CREATE OR REPLACE OPENCYPHER QUERY q19_tigergraph_neo4j_compatible(
+    STRING brand1,
+    STRING brand2,
+    STRING brand3,
+    INT qty1,
+    INT qty2,
+    INT qty3
+) FOR GRAPH TPCH_G {
+
+  MATCH (l:G_LINEITEM)-[:G_LINEITEM_PARTSUPP]->(ps:G_PARTSUPP)
+    -[:G_PARTSUPP_PART]->(p:G_PART)
+
+  WHERE (
+      (p.p_brand = $brand1
+       AND l.l_quantity >= 1
+       AND l.l_quantity <= 1 + $qty1
+       AND (p.p_container = "SM CASE"
+            OR p.p_container = "SM BOX"
+            OR p.p_container = "SM PACK"
+            OR p.p_container = "SM PKG"))
+      OR
+      (p.p_brand = $brand2
+       AND l.l_quantity >= $qty2
+       AND l.l_quantity <= 10 + $qty2
+       AND (p.p_container = "MED BAG"
+            OR p.p_container = "MED BOX"
+            OR p.p_container = "MED PACK"
+            OR p.p_container = "MED PKG"))
+      OR
+      (p.p_brand = $brand3
+       AND l.l_quantity >= $qty3
+       AND l.l_quantity <= 10 + $qty3
+       AND (p.p_container = "LG CASE"
+            OR p.p_container = "LG BOX"
+            OR p.p_container = "LG PACK"
+            OR p.p_container = "LG PKG"))
+    )
+    AND (l.l_shipmode = "AIR" OR l.l_shipmode = "AIR REG")
+    AND l.l_shipinstruct = "DELIVER IN PERSON"
+
+  RETURN SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+}

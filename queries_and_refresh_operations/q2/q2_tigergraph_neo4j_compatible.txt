@@ -1,0 +1,46 @@
+CREATE OR REPLACE OPENCYPHER QUERY q2_tigergraph_neo4j_compatible(
+    INT selected_size,
+    STRING selected_type,
+    STRING selected_region
+)
+FOR GRAPH TPCH_G {
+
+  MATCH
+    (p:G_PART)<-[:G_PARTSUPP_PART]-(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+      -[:G_SUPPLIER_NATION]->(n:G_NATION)
+      -[:G_NATION_REGION]->(r:G_REGION)
+
+  WHERE p.p_size = $selected_size
+    AND (
+           ($selected_type = "TIN"    AND p.p_type ENDS WITH "TIN")
+        OR ($selected_type = "NICKEL" AND p.p_type ENDS WITH "NICKEL")
+        OR ($selected_type = "BRASS"  AND p.p_type ENDS WITH "BRASS")
+        OR ($selected_type = "STEEL"  AND p.p_type ENDS WITH "STEEL")
+        OR ($selected_type = "COPPER" AND p.p_type ENDS WITH "COPPER")
+    )
+    AND r.r_name = $selected_region
+
+  WITH p.p_partkey AS partkey,
+       MIN(ps.ps_supplycost) AS min_cost
+
+  MATCH
+    (p2:G_PART)<-[:G_PARTSUPP_PART]-(ps2:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s2:G_SUPPLIER)
+      -[:G_SUPPLIER_NATION]->(n2:G_NATION)
+      -[:G_NATION_REGION]->(r2:G_REGION)
+
+  WHERE p2.p_partkey = partkey
+    AND r2.r_name = $selected_region
+
+  RETURN s2.s_acctbal AS s_acctbal,
+         s2.s_name AS s_name,
+         n2.n_name AS n_name,
+         p2.p_partkey AS p_partkey,
+         p2.p_mfgr AS p_mfgr,
+         s2.s_address AS s_address,
+         s2.s_phone AS s_phone,
+         s2.s_comment AS s_comment
+
+  ORDER BY s_acctbal DESC, n_name ASC, s_name ASC, p_partkey ASC
+}

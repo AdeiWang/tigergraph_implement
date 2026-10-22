@@ -1,0 +1,293 @@
+# ============================================================
+# TPC-H Graph Semantics - TigerGraph Schema
+#
+# Main design:
+# - Artificial TigerGraph Primary ID for technical identity
+# - Foreign-key properties are removed
+# - Relationships are represented using E/R edges
+# - E/R-key uniqueness will be checked explicitly
+#
+# Final design decision:
+# - The artificial Primary ID is TigerGraph's technical identity.
+# - It is separate from the TPC-H business and theoretical E/R keys.
+# - Secondary indexes support lookup but do not enforce uniqueness.
+# - Business-key and E/R-key uniqueness are checked explicitly.
+# ============================================================
+
+
+# ============================================================
+# REGION
+# Business key in original relational schema:
+#   r_regionkey
+#
+# REGION is an entity object, so its business-key property
+# is retained.
+# ============================================================
+
+CREATE VERTEX G_REGION (
+  PRIMARY_ID tg_region_id STRING,
+  r_regionkey INT,
+  r_name STRING,
+  r_comment STRING
+)
+
+
+# ============================================================
+# NATION
+#
+# Original FK:
+#   n_regionkey -> REGION.r_regionkey
+#
+# In Graph Semantics n_regionkey is removed and replaced by:
+#   G_NATION_REGION
+# ============================================================
+
+CREATE VERTEX G_NATION (
+  PRIMARY_ID tg_nation_id STRING,
+  n_nationkey INT,
+  n_name STRING,
+  n_comment STRING
+)
+
+
+# ============================================================
+# SUPPLIER
+#
+# Original FK:
+#   s_nationkey -> NATION.n_nationkey
+#
+# Replaced by:
+#   G_SUPPLIER_NATION
+# ============================================================
+
+CREATE VERTEX G_SUPPLIER (
+  PRIMARY_ID tg_supplier_id STRING,
+  s_suppkey INT,
+  s_name STRING,
+  s_address STRING,
+  s_phone STRING,
+  s_acctbal DOUBLE,
+  s_comment STRING,
+  # Auxiliary benchmark marker; not part of the logical TPC-H model.
+  ri_active INT DEFAULT 0
+)
+
+
+# ============================================================
+# CUSTOMER
+#
+# Original FK:
+#   c_nationkey -> NATION.n_nationkey
+#
+# Replaced by:
+#   G_CUSTOMER_NATION
+# ============================================================
+
+CREATE VERTEX G_CUSTOMER (
+  PRIMARY_ID tg_customer_id STRING,
+  c_custkey INT,
+  c_name STRING,
+  c_address STRING,
+  c_phone STRING,
+  c_acctbal DOUBLE,
+  c_mktsegment STRING,
+  c_comment STRING,
+  # Auxiliary benchmark marker; not part of the logical TPC-H model.
+  ri_active INT DEFAULT 0
+)
+
+
+# ============================================================
+# PART
+# Business key: p_partkey
+# ============================================================
+
+CREATE VERTEX G_PART (
+  PRIMARY_ID tg_part_id STRING,
+  p_partkey INT,
+  p_name STRING,
+  p_mfgr STRING,
+  p_brand STRING,
+  p_type STRING,
+  p_size INT,
+  p_container STRING,
+  p_retailprice DOUBLE,
+  p_comment STRING,
+  # Auxiliary benchmark marker; not part of the logical TPC-H model.
+  ri_active INT DEFAULT 0
+)
+
+
+# ============================================================
+# PARTSUPP
+#
+# Relational/Mixed property key:
+#   (ps_partkey, ps_suppkey)
+#
+# In Graph Semantics these FK properties are removed.
+#
+# Relationships are represented by:
+#   G_PARTSUPP_PART
+#   G_PARTSUPP_SUPPLIER
+#
+# The theoretical E/R key becomes:
+#   {PART, SUPPLIER}
+# ============================================================
+
+CREATE VERTEX G_PARTSUPP (
+  PRIMARY_ID tg_partsupp_id STRING,
+  ps_availqty INT,
+  ps_supplycost DOUBLE,
+  ps_comment STRING
+)
+
+
+# ============================================================
+# ORDERS
+#
+# Original FK:
+#   o_custkey -> CUSTOMER.c_custkey
+#
+# Replaced by:
+#   G_ORDERS_CUSTOMER
+# ============================================================
+
+CREATE VERTEX G_ORDERS (
+  PRIMARY_ID tg_orders_id STRING,
+  o_orderkey INT,
+  o_orderstatus STRING,
+  o_totalprice DOUBLE,
+  o_orderdate DATETIME,
+  o_orderpriority STRING,
+  o_clerk STRING,
+  o_shippriority INT,
+  o_comment STRING,
+  # Auxiliary benchmark marker; not part of the logical TPC-H model.
+  ri_active INT DEFAULT 0
+)
+
+
+# ============================================================
+# LINEITEM
+#
+# Relational/Mixed property key:
+#   (l_orderkey, l_linenumber)
+#
+# In Graph Semantics:
+#   l_orderkey is removed and replaced by G_LINEITEM_ORDERS
+#
+# Also:
+#   l_partkey
+#   l_suppkey
+#
+# are removed and replaced by G_LINEITEM_PARTSUPP
+#
+# l_linenumber remains as a property.
+#
+# The theoretical E/R key becomes:
+#   {ORDERS, l_linenumber}
+# ============================================================
+
+CREATE VERTEX G_LINEITEM (
+  PRIMARY_ID tg_lineitem_id STRING,
+  l_linenumber INT,
+  l_quantity DOUBLE,
+  l_extendedprice DOUBLE,
+  l_discount DOUBLE,
+  l_tax DOUBLE,
+  l_returnflag STRING,
+  l_linestatus STRING,
+  l_shipdate DATETIME,
+  l_commitdate DATETIME,
+  l_receiptdate DATETIME,
+  l_shipinstruct STRING,
+  l_shipmode STRING,
+  l_comment STRING
+)
+
+
+# ============================================================
+# E/R EDGES
+# ============================================================
+
+CREATE DIRECTED EDGE G_NATION_REGION (
+  FROM G_NATION,
+  TO G_REGION
+)
+
+CREATE DIRECTED EDGE G_SUPPLIER_NATION (
+  FROM G_SUPPLIER,
+  TO G_NATION
+)
+
+CREATE DIRECTED EDGE G_CUSTOMER_NATION (
+  FROM G_CUSTOMER,
+  TO G_NATION
+)
+
+CREATE DIRECTED EDGE G_ORDERS_CUSTOMER (
+  FROM G_ORDERS,
+  TO G_CUSTOMER
+)
+
+CREATE DIRECTED EDGE G_PARTSUPP_PART (
+  FROM G_PARTSUPP,
+  TO G_PART
+)
+
+CREATE DIRECTED EDGE G_PARTSUPP_SUPPLIER (
+  FROM G_PARTSUPP,
+  TO G_SUPPLIER
+)
+
+CREATE DIRECTED EDGE G_LINEITEM_ORDERS (
+  FROM G_LINEITEM,
+  TO G_ORDERS
+)
+
+CREATE DIRECTED EDGE G_LINEITEM_PARTSUPP (
+  FROM G_LINEITEM,
+  TO G_PARTSUPP
+)
+
+
+# ============================================================
+# GRAPH SEMANTICS SUMMARY
+#
+# All original FK relationships are represented using edges:
+#
+# NATION   -> REGION
+# SUPPLIER -> NATION
+# CUSTOMER -> NATION
+# ORDERS   -> CUSTOMER
+# PARTSUPP -> PART
+# PARTSUPP -> SUPPLIER
+# LINEITEM -> ORDERS
+# LINEITEM -> PARTSUPP
+#
+# No relational FK attributes are retained for these links.
+# ============================================================
+
+
+# ============================================================
+# GRAPH
+# ============================================================
+
+CREATE GRAPH TPCH_G (
+  G_REGION,
+  G_NATION,
+  G_SUPPLIER,
+  G_CUSTOMER,
+  G_PART,
+  G_PARTSUPP,
+  G_ORDERS,
+  G_LINEITEM,
+  G_NATION_REGION,
+  G_SUPPLIER_NATION,
+  G_CUSTOMER_NATION,
+  G_ORDERS_CUSTOMER,
+  G_PARTSUPP_PART,
+  G_PARTSUPP_SUPPLIER,
+  G_LINEITEM_ORDERS,
+  G_LINEITEM_PARTSUPP
+)

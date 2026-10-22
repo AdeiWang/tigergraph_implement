@@ -1,0 +1,26 @@
+CREATE OR REPLACE OPENCYPHER QUERY q14_tigergraph(
+    DATETIME start_date,
+    DATETIME end_date
+) FOR GRAPH TPCH_G {
+
+  MATCH
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_PARTSUPP]->(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_PART]->(p:G_PART)
+
+  WHERE l.l_shipdate >= $start_date
+    AND l.l_shipdate <  $end_date
+
+  RETURN
+    SUM(
+      CASE
+        WHEN p.p_type STARTS WITH "PROMO"
+        THEN l.l_extendedprice * (1 - l.l_discount)
+        ELSE 0.0
+      END
+    ) AS promo_revenue,
+
+    SUM(
+      l.l_extendedprice * (1 - l.l_discount)
+    ) AS total_revenue
+}

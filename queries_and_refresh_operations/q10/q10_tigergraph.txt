@@ -1,0 +1,38 @@
+CREATE OR REPLACE OPENCYPHER QUERY q10_tigergraph(
+    DATETIME start_date,
+    DATETIME end_date
+)
+FOR GRAPH TPCH_G {
+
+  MATCH
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+      -[:G_ORDERS_CUSTOMER]->(c:G_CUSTOMER)
+      -[:G_CUSTOMER_NATION]->(n:G_NATION)
+
+  WHERE o.o_orderdate >= $start_date
+    AND o.o_orderdate <  $end_date
+    AND l.l_returnflag = 'R'
+
+  WITH c.c_custkey AS custkey,
+       c.c_name AS customer_name,
+       c.c_acctbal AS acctbal,
+       n.n_name AS nation,
+       c.c_address AS address,
+       c.c_phone AS phone,
+       c.c_comment AS comment,
+       SUM(
+         l.l_extendedprice * (1 - l.l_discount)
+       ) AS revenue
+
+  RETURN custkey,
+         customer_name,
+         revenue,
+         acctbal,
+         nation,
+         address,
+         phone,
+         comment
+
+  ORDER BY revenue DESC
+}

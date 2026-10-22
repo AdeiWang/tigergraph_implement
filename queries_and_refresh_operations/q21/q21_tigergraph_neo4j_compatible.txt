@@ -1,0 +1,25 @@
+CREATE OR REPLACE OPENCYPHER QUERY q21_tigergraph_neo4j_compatible(
+  STRING selected_nation
+) FOR GRAPH TPCH_G {
+  MATCH (o:G_ORDERS)<-[:G_LINEITEM_ORDERS]-(l1:G_LINEITEM)
+        -[:G_LINEITEM_PARTSUPP]->(ps1:G_PARTSUPP)
+        -[:G_PARTSUPP_SUPPLIER]->(s1:G_SUPPLIER)
+        -[:G_SUPPLIER_NATION]->(n:G_NATION)
+  MATCH (o)<-[:G_LINEITEM_ORDERS]-(l2:G_LINEITEM)
+        -[:G_LINEITEM_PARTSUPP]->(ps2:G_PARTSUPP)
+        -[:G_PARTSUPP_SUPPLIER]->(s2:G_SUPPLIER)
+  WHERE n.n_name = $selected_nation
+    AND l1.l_receiptdate > l1.l_commitdate
+  WITH s1.s_name AS supplier_name,
+       COUNT(DISTINCT CASE
+         WHEN s2.s_suppkey <> s1.s_suppkey
+         THEN o.o_orderkey * 10 + l1.l_linenumber ELSE -1 END
+       ) AS candidate_plus_flag,
+       COUNT(DISTINCT CASE
+         WHEN s2.s_suppkey <> s1.s_suppkey
+          AND l2.l_receiptdate > l2.l_commitdate
+         THEN o.o_orderkey * 10 + l1.l_linenumber ELSE -1 END
+       ) AS bad_plus_flag
+  RETURN supplier_name, candidate_plus_flag, bad_plus_flag
+  ORDER BY supplier_name
+}

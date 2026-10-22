@@ -1,0 +1,25 @@
+CREATE OR REPLACE OPENCYPHER QUERY q20_tigergraph_neo4j_compatible(
+    STRING name_prefix,
+    STRING selected_nation,
+    DATETIME start_date,
+    DATETIME end_date
+) FOR GRAPH TPCH_G {
+
+  MATCH
+    (n:G_NATION)<-[:G_SUPPLIER_NATION]-(s:G_SUPPLIER)
+      <-[:G_PARTSUPP_SUPPLIER]-(ps:G_PARTSUPP),
+    (l:G_LINEITEM)-[:G_LINEITEM_PARTSUPP]->(ps)
+      -[:G_PARTSUPP_PART]->(p:G_PART)
+
+  WHERE n.n_name = $selected_nation
+    AND instr(p.p_name, $name_prefix) >= 0
+    AND l.l_shipdate >= $start_date
+    AND l.l_shipdate <  $end_date
+
+  WITH s, p, SUM(l.l_quantity) AS total_qty
+  WHERE total_qty <= 300
+
+  RETURN s.s_name AS supplier_name,
+         s.s_address AS supplier_address
+  ORDER BY supplier_name ASC
+}

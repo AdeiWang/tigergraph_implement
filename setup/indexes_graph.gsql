@@ -1,0 +1,43 @@
+# ============================================================
+# TPC-H Graph Semantics - Business-Key Secondary Indexes
+#
+# These indexes apply to entity-object business-key properties.
+#
+# PARTSUPP and LINEITEM use E/R keys in Graph Semantics and
+# therefore are not represented by ordinary business-key
+# property indexes here.
+# ============================================================
+
+USE GLOBAL
+
+CREATE GLOBAL SCHEMA_CHANGE JOB add_graph_business_key_indexes {
+
+  ALTER VERTEX G_REGION
+    ADD INDEX idx_g_r_regionkey ON (r_regionkey);
+
+  ALTER VERTEX G_NATION
+    ADD INDEX idx_g_n_nationkey ON (n_nationkey);
+
+  ALTER VERTEX G_SUPPLIER
+    ADD INDEX idx_g_s_suppkey ON (s_suppkey);
+
+  ALTER VERTEX G_CUSTOMER
+    ADD INDEX idx_g_c_custkey ON (c_custkey);
+
+  ALTER VERTEX G_PART
+    ADD INDEX idx_g_p_partkey ON (p_partkey);
+
+  ALTER VERTEX G_ORDERS
+    ADD INDEX idx_g_o_orderkey ON (o_orderkey);
+}
+
+# Run separately after schema creation:
+#
+# RUN GLOBAL SCHEMA_CHANGE JOB add_graph_business_key_indexes
+#
+# Graph E/R-key integrity for:
+#
+# PARTSUPP = {PART, SUPPLIER}
+# LINEITEM = {ORDERS, l_linenumber}
+#
+# must be checked explicitly.

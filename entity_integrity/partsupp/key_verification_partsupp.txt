@@ -1,0 +1,18 @@
+CREATE OR REPLACE OPENCYPHER QUERY key_verification_partsupp() FOR GRAPH TPCH_G {
+
+  MATCH
+    (ps1:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+      <-[:G_PARTSUPP_SUPPLIER]-(ps2:G_PARTSUPP),
+
+    (ps1:G_PARTSUPP)
+      -[:G_PARTSUPP_PART]->(p:G_PART)
+      <-[:G_PARTSUPP_PART]-(ps2:G_PARTSUPP)
+
+  WHERE s.s_suppkey = 1
+    AND p.p_partkey = 1
+    AND getvid(ps1) <> getvid(ps2)
+
+  RETURN getvid(ps1) AS ps1_id,
+         getvid(ps2) AS ps2_id
+}

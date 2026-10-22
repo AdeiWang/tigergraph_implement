@@ -1,0 +1,16 @@
+CREATE OR REPLACE QUERY ri_pc_activate_gsql(
+  INT offset_value,
+  INT limit_value
+) FOR GRAPH TPCH_G {
+
+  Selected = SELECT p
+             FROM G_PART:p
+             ORDER BY p.p_partkey ASC
+             LIMIT limit_value OFFSET offset_value;
+
+  Activated = SELECT p
+              FROM Selected:p
+              POST-ACCUM p.ri_active = 1;
+
+  PRINT Activated.size() AS activated_count;
+}

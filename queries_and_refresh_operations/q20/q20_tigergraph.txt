@@ -1,0 +1,35 @@
+CREATE OR REPLACE OPENCYPHER QUERY q20_tigergraph(
+    STRING name_prefix,
+    STRING selected_nation,
+    DATETIME start_date,
+    DATETIME end_date
+) FOR GRAPH TPCH_G {
+
+  MATCH
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_PARTSUPP]->(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_PART]->(p:G_PART)
+
+  WHERE instr(p.p_name, $name_prefix) = 0
+    AND l.l_shipdate >= $start_date
+    AND l.l_shipdate <  $end_date
+
+  WITH
+    ps,
+    SUM(l.l_quantity) AS total_qty
+
+  WHERE total_qty < 2.0 * ps.ps_availqty
+
+  MATCH
+    (ps:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+      -[:G_SUPPLIER_NATION]->(n:G_NATION)
+
+  WHERE n.n_name = $selected_nation
+
+  RETURN DISTINCT
+    s.s_name AS supplier_name,
+    s.s_address AS supplier_address
+
+  ORDER BY supplier_name ASC
+}

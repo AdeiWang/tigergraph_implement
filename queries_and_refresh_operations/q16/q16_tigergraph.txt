@@ -1,0 +1,46 @@
+CREATE OR REPLACE OPENCYPHER QUERY q16_tigergraph(
+    STRING excluded_brand,
+    STRING excluded_type_prefix,
+    INT size1,
+    INT size2,
+    INT size3,
+    INT size4,
+    INT size5,
+    INT size6,
+    INT size7,
+    INT size8
+) FOR GRAPH TPCH_G {
+
+  MATCH
+    (p:G_PART)
+      <-[:G_PARTSUPP_PART]-(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+
+  WHERE p.p_brand <> $excluded_brand
+
+    AND NOT (
+      instr(p.p_type, $excluded_type_prefix) = 0
+    )
+
+    AND p.p_size IN [
+      $size1, $size2, $size3, $size4,
+      $size5, $size6, $size7, $size8
+    ]
+
+    AND NOT (
+      instr(s.s_comment, "Customer") >= 0
+      AND instr(s.s_comment, "Complaints") >= 0
+    )
+
+  RETURN
+    p.p_brand AS p_brand,
+    p.p_type AS p_type,
+    p.p_size AS p_size,
+    COUNT(DISTINCT s.s_suppkey) AS supplier_cnt
+
+  ORDER BY
+    supplier_cnt DESC,
+    p_brand ASC,
+    p_type ASC,
+    p_size ASC
+}

@@ -1,0 +1,39 @@
+USE GRAPH TPCH_RF_G
+
+CREATE LOADING JOB load_rf_graph_sf001 FOR GRAPH TPCH_RF_G {
+  DEFINE FILENAME f_customer;
+  DEFINE FILENAME f_part;
+  DEFINE FILENAME f_supplier;
+  DEFINE FILENAME f_partsupp;
+  DEFINE FILENAME f_orders;
+  DEFINE FILENAME f_lineitem;
+  DEFINE FILENAME f_orders_customer;
+  DEFINE FILENAME f_partsupp_part;
+  DEFINE FILENAME f_partsupp_supplier;
+  DEFINE FILENAME f_lineitem_orders;
+  DEFINE FILENAME f_lineitem_partsupp;
+
+  LOAD f_customer TO VERTEX RF_CUSTOMER VALUES ($0,$1,$2,$3,$4,$5,$6,$7)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_part TO VERTEX RF_PART VALUES ($0,$1)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_supplier TO VERTEX RF_SUPPLIER VALUES ($0,$1)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_partsupp TO VERTEX RF_PARTSUPP VALUES ($0,$1,$2,$3)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_orders TO VERTEX RF_ORDERS VALUES ($0,$1,$2,$3,$4,$5,$6,$7,$8)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_lineitem TO VERTEX RF_LINEITEM VALUES ($0,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+
+  LOAD f_orders_customer TO EDGE RF_ORDERS_CUSTOMER VALUES ($0,$1)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_partsupp_part TO EDGE RF_PARTSUPP_PART VALUES ($0,$1)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_partsupp_supplier TO EDGE RF_PARTSUPP_SUPPLIER VALUES ($0,$1)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_lineitem_orders TO EDGE RF_LINEITEM_ORDERS VALUES ($0,$1)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+  LOAD f_lineitem_partsupp TO EDGE RF_LINEITEM_PARTSUPP VALUES ($0,$1)
+    USING HEADER="true", SEPARATOR=",", QUOTE="double";
+}

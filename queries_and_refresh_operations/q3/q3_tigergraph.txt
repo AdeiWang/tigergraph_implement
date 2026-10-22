@@ -1,0 +1,27 @@
+CREATE OR REPLACE OPENCYPHER QUERY q3_tigergraph(
+    STRING selected_segment,
+    DATETIME selected_date
+)
+FOR GRAPH TPCH_G {
+
+  MATCH (l:G_LINEITEM)
+        -[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+        -[:G_ORDERS_CUSTOMER]->(c:G_CUSTOMER)
+
+  WHERE c.c_mktsegment = $selected_segment
+    AND o.o_orderdate < $selected_date
+    AND l.l_shipdate > $selected_date
+
+  WITH o.o_orderkey AS orderkey,
+       o.o_orderdate AS orderdate,
+       o.o_shippriority AS shippriority,
+       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+
+  RETURN orderkey,
+         orderdate,
+         shippriority,
+         revenue
+
+  ORDER BY revenue DESC,
+           orderdate ASC
+}

@@ -1,0 +1,6 @@
+CREATE OR REPLACE OPENCYPHER QUERY rf1_create_order_customer_edge(
+    VERTEX<RF_ORDERS> o,
+    VERTEX<RF_CUSTOMER> c
+) FOR GRAPH TPCH_RF_G {
+  CREATE (o)-[:RF_ORDERS_CUSTOMER]->(c)
+}

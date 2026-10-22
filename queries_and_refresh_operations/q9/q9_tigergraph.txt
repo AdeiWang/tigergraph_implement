@@ -1,0 +1,33 @@
+CREATE OR REPLACE OPENCYPHER QUERY q9_tigergraph(
+    STRING selected_color
+)
+FOR GRAPH TPCH_G {
+
+  MATCH
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_PARTSUPP]->(ps:G_PARTSUPP)
+      -[:G_PARTSUPP_SUPPLIER]->(s:G_SUPPLIER)
+      -[:G_SUPPLIER_NATION]->(n:G_NATION),
+
+    (ps:G_PARTSUPP)
+      -[:G_PARTSUPP_PART]->(p:G_PART),
+
+    (l:G_LINEITEM)
+      -[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+
+  WHERE instr(p.p_name, $selected_color) >= 0
+
+  WITH n.n_name AS nation,
+       year(o.o_orderdate) AS o_year,
+       SUM(
+         l.l_extendedprice * (1 - l.l_discount)
+         - ps.ps_supplycost * l.l_quantity
+       ) AS sum_profit
+
+  RETURN nation,
+         o_year,
+         sum_profit
+
+  ORDER BY nation ASC,
+           o_year DESC
+}

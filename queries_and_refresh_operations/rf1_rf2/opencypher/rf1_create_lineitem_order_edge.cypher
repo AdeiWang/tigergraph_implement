@@ -1,0 +1,6 @@
+CREATE OR REPLACE OPENCYPHER QUERY rf1_create_lineitem_order_edge(
+    VERTEX<RF_LINEITEM> l,
+    VERTEX<RF_ORDERS> o
+) FOR GRAPH TPCH_RF_G {
+  CREATE (l)-[:RF_LINEITEM_ORDERS]->(o)
+}

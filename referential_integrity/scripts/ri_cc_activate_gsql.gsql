@@ -1,0 +1,9 @@
+CREATE OR REPLACE QUERY ri_cc_activate_gsql(INT offset_value, INT limit_value)
+FOR GRAPH TPCH_G {
+  Selected = SELECT c FROM G_CUSTOMER:c
+             ORDER BY c.c_custkey ASC
+             LIMIT limit_value OFFSET offset_value;
+  Activated = SELECT c FROM Selected:c
+              POST-ACCUM c.ri_active = 1;
+  PRINT Activated.size() AS activated_count;
+}

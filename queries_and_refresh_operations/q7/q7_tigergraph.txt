@@ -1,0 +1,37 @@
+CREATE OR REPLACE OPENCYPHER QUERY q7_tigergraph(
+    STRING nation1,
+    STRING nation2
+)
+FOR GRAPH TPCH_G {
+
+  MATCH
+    (n1:G_NATION)
+      <-[:G_SUPPLIER_NATION]-(s:G_SUPPLIER)
+      <-[:G_PARTSUPP_SUPPLIER]-(ps:G_PARTSUPP)
+      <-[:G_LINEITEM_PARTSUPP]-(l:G_LINEITEM)
+      -[:G_LINEITEM_ORDERS]->(o:G_ORDERS)
+      -[:G_ORDERS_CUSTOMER]->(c:G_CUSTOMER)
+      -[:G_CUSTOMER_NATION]->(n2:G_NATION)
+
+  WHERE (
+          (n1.n_name = $nation1 AND n2.n_name = $nation2)
+          OR
+          (n1.n_name = $nation2 AND n2.n_name = $nation1)
+        )
+    AND l.l_shipdate >= to_datetime('1995-01-01')
+    AND l.l_shipdate <= to_datetime('1996-12-31')
+
+  WITH n1.n_name AS supp_nation,
+       n2.n_name AS cust_nation,
+       year(l.l_shipdate) AS l_year,
+       SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+
+  RETURN supp_nation,
+         cust_nation,
+         l_year,
+         revenue
+
+  ORDER BY supp_nation ASC,
+           cust_nation ASC,
+           l_year ASC
+}

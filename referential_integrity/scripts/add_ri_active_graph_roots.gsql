@@ -1,0 +1,9 @@
+CREATE GLOBAL SCHEMA_CHANGE JOB add_ri_active_graph_roots {
+  ALTER VERTEX G_CUSTOMER ADD ATTRIBUTE (ri_active INT DEFAULT 0);
+  ALTER VERTEX G_ORDERS ADD ATTRIBUTE (ri_active INT DEFAULT 0);
+  ALTER VERTEX G_SUPPLIER ADD ATTRIBUTE (ri_active INT DEFAULT 0);
+}
+
+# Run once for the existing TPCH_G schema:
+# RUN GLOBAL SCHEMA_CHANGE JOB add_ri_active_graph_roots
+# DROP JOB add_ri_active_graph_roots

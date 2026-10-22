@@ -1,0 +1,19 @@
+USE GRAPH TPCH_G
+
+RUN LOADING JOB load_graph_sf01_all USING
+  f_region="/home/tigergraph/tpch_data/graph/vertices/region.csv",
+  f_nation="/home/tigergraph/tpch_data/graph/vertices/nation.csv",
+  f_supplier="/home/tigergraph/tpch_data/graph/vertices/supplier.csv",
+  f_customer="/home/tigergraph/tpch_data/graph/vertices/customer.csv",
+  f_part="/home/tigergraph/tpch_data/graph/vertices/part.csv",
+  f_partsupp="/home/tigergraph/tpch_data/graph/vertices/partsupp.csv",
+  f_orders="/home/tigergraph/tpch_data/graph/vertices/orders.csv",
+  f_lineitem="/home/tigergraph/tpch_data/graph/vertices/lineitem.csv",
+  f_nation_region="/home/tigergraph/tpch_data/graph/edges/nation_region.csv",
+  f_supplier_nation="/home/tigergraph/tpch_data/graph/edges/supplier_nation.csv",
+  f_customer_nation="/home/tigergraph/tpch_data/graph/edges/customer_nation.csv",
+  f_orders_customer="/home/tigergraph/tpch_data/graph/edges/orders_customer.csv",
+  f_partsupp_part="/home/tigergraph/tpch_data/graph/edges/partsupp_part.csv",
+  f_partsupp_supplier="/home/tigergraph/tpch_data/graph/edges/partsupp_supplier.csv",
+  f_lineitem_orders="/home/tigergraph/tpch_data/graph/edges/lineitem_orders.csv",
+  f_lineitem_partsupp="/home/tigergraph/tpch_data/graph/edges/lineitem_partsupp.csv"

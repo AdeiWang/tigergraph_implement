@@ -1,0 +1,60 @@
+module,item,percentage,metric,sf0.01,sf0.1,sf1,status,notes
+Queries,Q1,,query_status.elapsedTime,10.8,90.3,786.4,complete,
+Queries,Q2,,query_status.elapsedTime,50.7,142.6,1066.1,complete,Neo4j-compatible
+Queries,Q3,,query_status.elapsedTime,16.7,100.7,815.8,complete,
+Queries,Q4,,query_status.elapsedTime,13.1,77.5,738.9,complete,
+Queries,Q5,,query_status.elapsedTime,43.9,234.6,2403.9,complete,
+Queries,Q6,,query_status.elapsedTime,6.2,35.0,261.9,complete,
+Queries,Q7,,query_status.elapsedTime,82.6,1017.2,13837.7,complete,superlinear slow-query candidate
+Queries,Q8,,query_status.elapsedTime,57.0,266.5,2762.1,complete,Neo4j-compatible
+Queries,Q9,,query_status.elapsedTime,60.6,605.3,6997.0,complete,
+Queries,Q10,,query_status.elapsedTime,24.0,108.8,1082.2,complete,Neo4j-reference-aligned single-path openCypher rerun 2026-10-15
+Queries,Q11,,sum of two query_status.elapsedTime values,43.0,151.3,1463.0,complete,two-stage at all scales; complete CSV; independent correctness PASS 20/20 at all scales
+Queries,Q12,,query_status.elapsedTime,17.8,132.4,1258.6,complete,
+Queries,Q13,,query_status.elapsedTime,9.6,29.5,216.6,complete,
+Queries,Q14,,query_status.elapsedTime,11.5,43.4,320.0,complete,client final percentage
+Queries,Q15,,query_status.elapsedTime,13.6,95.7,890.1,complete,
+Queries,Q16,,query_status.elapsedTime,14.7,55.1,445.7,complete,structural adaptation
+Queries,Q17,,query_status.elapsedTime,68.6,535.1,5639.2,complete,Neo4j-reference-aligned execution order; rerun 2026-10-15
+Queries,Q18,,query_status.elapsedTime,65.5,772.0,11010.9,complete,superlinear slow-query candidate
+Queries,Q19,,query_status.elapsedTime,20.5,106.1,962.2,complete,Neo4j-compatible
+Queries,Q20,,query_status.elapsedTime,43.8,120.3,943.1,complete,Neo4j-compatible
+Queries,Q21,,query_status.elapsedTime,87.6,603.3,7977.4,complete,Neo4j-compatible; complete CSV; correctness PASS
+Queries,Q22,,sum of two query_status.elapsedTime values,24.0,108.3,1213.4,complete,two timed database queries; client retrieval and Python finalisation excluded; correctness PASS
+Query Diagnostics,Q22 retrieval and Python,,partial retrieval-plus-finalisation interval,55.018,153.907,1304.841,diagnostic,starts after timed asynchronous submissions; not a complete end-to-end time
+Entity Integrity,LINEITEM,,query_status.elapsedTime,28.8,113.0,879.1,complete,global violation_count=0 at all scales
+Entity Integrity,PARTSUPP,,query_status.elapsedTime,16.6,23.9,108.3,complete,targeted three-scale rerun 2026-10-20; global violation_count=0 at all scales
+RF,RF1,,sum of query_status.elapsedTime,5303.5,4846.6,4719.2,complete,historical fixed batch of 15 Orders per round at every scale; 3804 calls; correctness PASS 20/20
+RF,RF2,,sum of query_status.elapsedTime,1063.2,1793.3,9034.0,complete,historical fixed batch paired with RF1; 600 calls; correctness PASS 20/20
+Referential Integrity,Cc,0.1%,query_status.elapsedTime,26.6,25.5,27.7,complete,
+Referential Integrity,Cc,1%,query_status.elapsedTime,24.6,26.1,33.7,complete,
+Referential Integrity,Cc,10%,query_status.elapsedTime,26.0,30.5,74.3,complete,
+Referential Integrity,Cc,20%,query_status.elapsedTime,27.5,34.5,108.8,complete,
+Referential Integrity,Cc,40%,query_status.elapsedTime,27.5,46.7,196.0,complete,
+Referential Integrity,Cc,60%,query_status.elapsedTime,28.5,60.5,269.9,complete,
+Referential Integrity,Cc,80%,query_status.elapsedTime,29.5,69.2,334.8,complete,
+Referential Integrity,Cc,100%,query_status.elapsedTime,30.8,78.8,408.9,complete,
+Referential Integrity,Oc,0.1%,query_status.elapsedTime,26.2,29.5,84.6,complete,
+Referential Integrity,Oc,1%,query_status.elapsedTime,25.9,35.1,128.2,complete,
+Referential Integrity,Oc,10%,query_status.elapsedTime,30.5,86.8,440.9,complete,
+Referential Integrity,Oc,20%,query_status.elapsedTime,37.1,132.9,793.2,complete,
+Referential Integrity,Oc,40%,query_status.elapsedTime,48.1,211.4,1451.3,complete,
+Referential Integrity,Oc,60%,query_status.elapsedTime,58.6,278.7,2150.6,complete,
+Referential Integrity,Oc,80%,query_status.elapsedTime,69.3,348.2,2842.3,complete,
+Referential Integrity,Oc,100%,query_status.elapsedTime,74.4,402.2,3501.5,complete,
+Referential Integrity,Pc,0.1%,query_status.elapsedTime,22.0,25.2,29.4,complete,
+Referential Integrity,Pc,1%,query_status.elapsedTime,45.7,25.1,38.0,complete,
+Referential Integrity,Pc,10%,query_status.elapsedTime,82.7,32.2,91.0,complete,
+Referential Integrity,Pc,20%,query_status.elapsedTime,98.9,39.9,146.1,complete,
+Referential Integrity,Pc,40%,query_status.elapsedTime,109.5,58.0,265.2,complete,
+Referential Integrity,Pc,60%,query_status.elapsedTime,121.1,72.3,379.0,complete,
+Referential Integrity,Pc,80%,query_status.elapsedTime,121.9,87.1,484.9,complete,
+Referential Integrity,Pc,100%,query_status.elapsedTime,124.6,95.5,572.5,complete,
+Referential Integrity,Sc,0.1%,query_status.elapsedTime,25.4,24.1,23.2,complete,sf0.01 effective percentage 1%
+Referential Integrity,Sc,1%,query_status.elapsedTime,25.4,23.9,24.2,complete,
+Referential Integrity,Sc,10%,query_status.elapsedTime,25.1,24.1,25.8,complete,
+Referential Integrity,Sc,20%,query_status.elapsedTime,24.4,25.1,31.0,complete,
+Referential Integrity,Sc,40%,query_status.elapsedTime,24.8,25.1,39.2,complete,
+Referential Integrity,Sc,60%,query_status.elapsedTime,24.6,26.8,46.0,complete,
+Referential Integrity,Sc,80%,query_status.elapsedTime,24.5,26.4,51.2,complete,
+Referential Integrity,Sc,100%,query_status.elapsedTime,25.3,28.3,56.1,complete,

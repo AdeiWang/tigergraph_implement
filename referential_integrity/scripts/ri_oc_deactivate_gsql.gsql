@@ -1,0 +1,6 @@
+CREATE OR REPLACE QUERY ri_oc_deactivate_gsql() FOR GRAPH TPCH_G {
+  Deactivated = SELECT o FROM G_ORDERS:o
+                WHERE o.ri_active == 1
+                POST-ACCUM o.ri_active = 0;
+  PRINT Deactivated.size() AS deactivated_count;
+}
