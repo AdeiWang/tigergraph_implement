@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*token*
+*secret*
+credentials*
+
+# Generated datasets and benchmark output
+datasets/
+tpch_data/
+results/query_benchmarks/
+results/query_benchmarks_final/
+entity_integrity/results/
+referential_integrity/results/
+queries_and_refresh_operations/rf1_rf2/results/
+*.xlsx
+
+# LaTeX and document build artefacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Archives and container exports
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.bak
+*.tmp
