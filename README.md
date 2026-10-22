@@ -27,10 +27,15 @@ entity_integrity/                   Entity Integrity checks
 referential_integrity/              Referential Integrity workloads
 results/q*/                         Parameter schedules for the 20 runs
 examples/                            Small result summary
+results_summary/                     Module-level formal summaries and provenance
+figures/                             Selected result and schema figures (PNG and PDF)
 docs/                                Experiment and migration notes
 ```
 
 For a short inspection route, see [`docs/reviewer_guide.md`](docs/reviewer_guide.md).
+The full command order is in [`docs/experiment_commands.md`](docs/experiment_commands.md),
+and [`docs/reference_mapping.md`](docs/reference_mapping.md) maps the Neo4j reference
+components to their TigerGraph counterparts.
 
 ## Preparing the graph
 
@@ -88,6 +93,19 @@ middle ten values after sorting 20 runs and trimming five values from each side.
 aggregate table, not raw per-run evidence. Full timestamped results are not included because
 they are large. Parameter schedules under `results/q*/` are included so the same inputs can
 be reused.
+
+Module-level tables and evidence qualifications are available under `results_summary/`.
+Selected figures are available as both PNG previews and PDF originals under `figures/`.
+
+## Results overview
+
+![Query scaling overview](figures/01_query_scaling_overview.png)
+
+![Referential Integrity scaling](figures/03_referential_integrity_scaling.png)
+
+The figures report the retained formal series and should be read with the timing and
+comparability qualifications in `docs/experiment_protocol.md` and
+`results_summary/result_provenance.md`.
 
 ## Reference work
 

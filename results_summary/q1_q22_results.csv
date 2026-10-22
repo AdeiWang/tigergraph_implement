@@ -1,0 +1,23 @@
+query,metric,sf0.01_ms,sf0.1_ms,sf1_ms,implementation_note
+Q1,query_status.elapsedTime,10.8,90.3,786.4,
+Q2,query_status.elapsedTime,50.7,142.6,1066.1,reference-compatible variant
+Q3,query_status.elapsedTime,16.7,100.7,815.8,
+Q4,query_status.elapsedTime,13.1,77.5,738.9,
+Q5,query_status.elapsedTime,43.9,234.6,2403.9,
+Q6,query_status.elapsedTime,6.2,35.0,261.9,
+Q7,query_status.elapsedTime,82.6,1017.2,13837.7,superlinear slow-query candidate
+Q8,query_status.elapsedTime,57.0,266.5,2762.1,reference-compatible variant
+Q9,query_status.elapsedTime,60.6,605.3,6997.0,
+Q10,query_status.elapsedTime,24.0,108.8,1082.2,reference-aligned single-path rerun
+Q11,sum of two query_status.elapsedTime values,43.0,151.3,1463.0,two-stage at all scales
+Q12,query_status.elapsedTime,17.8,132.4,1258.6,
+Q13,query_status.elapsedTime,9.6,29.5,216.6,
+Q14,query_status.elapsedTime,11.5,43.4,320.0,final percentage calculated by client
+Q15,query_status.elapsedTime,13.6,95.7,890.1,
+Q16,query_status.elapsedTime,14.7,55.1,445.7,equivalent structural adaptation
+Q17,query_status.elapsedTime,68.6,535.1,5639.2,reference-aligned execution-order rerun
+Q18,query_status.elapsedTime,65.5,772.0,11010.9,superlinear slow-query candidate
+Q19,query_status.elapsedTime,20.5,106.1,962.2,reference-compatible variant
+Q20,query_status.elapsedTime,43.8,120.3,943.1,reference-compatible variant
+Q21,query_status.elapsedTime,87.6,603.3,7977.4,complete CSV assembled by client
+Q22,sum of two query_status.elapsedTime values,24.0,108.3,1213.4,client finalisation excluded

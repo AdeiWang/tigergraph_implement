@@ -1,0 +1,9 @@
+workload,evidence,scope,conclusion
+Q11,independent source-data validation,20 outputs at each of three scales,all checked outputs passed
+Q14,independent percentage calculation,retained formal outputs,checked percentages passed
+Q16,independent source-data validation,retained formal outputs,checked outputs passed
+Q21,independent final-output validation,retained complete CSV outputs,checked outputs passed
+Q22,independent final-output validation,retained complete CSV outputs,checked outputs passed
+Entity Integrity,global duplicate-key queries,Lineitem and PartSupp at three scales,violation_count=0
+Referential Integrity,post-update cleanup checks,Cc Oc Pc and Sc formal runs,no active markers or temporary negative keys remained
+RF1 and RF2,round-level state checks,20 rounds at each scale,all recorded rounds passed

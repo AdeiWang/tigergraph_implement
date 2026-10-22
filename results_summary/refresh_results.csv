@@ -1,0 +1,3 @@
+operation,metric,sf0.01_ms,sf0.1_ms,sf1_ms,scope
+RF1,sum of query_status.elapsedTime,5303.5,4846.6,4719.2,historical fixed batch of 15 Orders per round at every scale; correctness 20/20
+RF2,sum of query_status.elapsedTime,1063.2,1793.3,9034.0,paired historical fixed batch; correctness 20/20

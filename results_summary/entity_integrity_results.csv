@@ -1,0 +1,3 @@
+entity,metric,sf0.01_ms,sf0.1_ms,sf1_ms,global_verification
+Lineitem,query_status.elapsedTime,28.8,113.0,879.1,violation_count=0 at all scales
+PartSupp,query_status.elapsedTime,16.6,23.9,108.3,violation_count=0 at all scales

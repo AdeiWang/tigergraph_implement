@@ -13,6 +13,12 @@ directories, and dissertation source files.
 5. Inspect Q11, Q21, and Q22 together with their specialised runners; these queries cross database/client execution boundaries.
 6. Inspect the Entity and Referential Integrity READMEs for the separation of performance timing and correctness checks.
 7. Inspect `examples/project_final_master_summary.csv` for the aggregate dissertation results.
+8. Inspect `results_summary/` for module-level tables and result provenance.
+9. Inspect `figures/` for the selected schema and experimental-result figures.
+
+For correspondence with the reference Neo4j repository, see
+`docs/reference_mapping.md`. For an end-to-end command order, see
+`docs/experiment_commands.md`.
 
 ## Minimal non-database checks
 
