@@ -1,0 +1,5 @@
+scale_factor,semantics,chain,active_count,negative_count,status
+0.1,graph,Cc,0,0,PASS
+0.1,graph,Oc,0,0,PASS
+0.1,graph,Pc,0,0,PASS
+0.1,graph,Sc,0,0,PASS

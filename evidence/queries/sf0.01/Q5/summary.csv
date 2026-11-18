@@ -1,0 +1,2 @@
+query,scale_factor,random_seed,total_runs,trim_each_side,used_runs,mean_ms,min_kept_ms,max_kept_ms
+Q5,0.01,42,20,5,10,43.9,40,49

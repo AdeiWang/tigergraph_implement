@@ -1,0 +1,25 @@
+{
+  "scale_factor": "0.1",
+  "host": "http://localhost:14242",
+  "graph": "TPCH_RF_G",
+  "seed": 20260923,
+  "runs": 20,
+  "orders_per_run": 150,
+  "customer_id_range": 15000,
+  "partsupp_id_range": 80000,
+  "workload_plan": "scale-dependent orders; seeded 1--6 lineitems per order",
+  "all_rf1_correctness_passed": true,
+  "all_rf2_correctness_passed": true,
+  "rf1_query_count": {
+    "total": 37248,
+    "mean_per_run": 1862.4,
+    "min_per_run": 1722,
+    "max_per_run": 2007
+  },
+  "rf2_query_count": {
+    "total": 6000,
+    "mean_per_run": 300
+  },
+  "rf1_trimmed_mean_ms": 44508.9,
+  "rf2_trimmed_mean_ms": 17093.5
+}

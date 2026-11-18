@@ -1,8 +1,8 @@
 # Result provenance
 
 The CSV files in this directory are compact exports of the dissertation's retained formal
-summary. They are provided so that the reported values can be reviewed without uploading the
-TPC-H datasets or every generated result file.
+summary. The selected raw timings, run summaries, manifests, and correctness records are
+available under `evidence/`.
 
 ## Common aggregation rule
 
@@ -11,24 +11,24 @@ and slowest five are removed, and the arithmetic mean of the middle ten is repor
 are milliseconds. The database metric is TigerGraph `query_status.elapsedTime`; no synthetic
 equivalent of Neo4j DB Hits is reported.
 
-## Local evidence sources
+## Included evidence
 
-| Summary | Retained source in the full project | Evidence not copied here |
-|---|---|---|
-| Q1--Q20 | `results/query_benchmarks/` and query manifests | Timestamped raw 20-run CSV files |
-| Q11 | `results/query_benchmarks_final/q11_two_stage/` | Complete per-run outputs and independent validation details |
-| Q21/Q22 | `results/query_benchmarks_final/` | Complete final CSV outputs and validation reports |
-| Entity Integrity | `entity_integrity/results/` | Raw benchmark files and global-verification JSON/CSV files |
-| Referential Integrity | `referential_integrity/results/` | Raw files for every chain, scale, and activation percentage |
-| RF1/RF2 | `queries_and_refresh_operations/rf1_rf2/results/` | Per-round raw and correctness JSON files |
+| Workload | Included records |
+|---|---|
+| Q1--Q22 | Raw 20-run timings, trimmed summaries, recorded parameters, and available run manifests at SF 0.01, 0.1, and 1 |
+| Query correctness | Retained validation reports for the representative direct queries and Q11, Q14, Q16, Q21, and Q22 |
+| Entity Integrity | Raw timings, summaries, parameters, manifests, global zero-violation checks, and the retained reversible positive control |
+| Referential Integrity | Raw and summary files for Cc, Oc, Pc, and Sc at all three scales, plus cleanup checks |
+| RF1/RF2 | Raw round records, summaries, and round-level correctness reports for the completed scale-dependent series |
 
-The omitted directories contain generated evidence rather than implementation source and can
-be supplied separately if detailed auditing is required.
+`evidence/query_source_map.csv` maps each analytical result to its source in the full project.
+`evidence/evidence_manifest.csv` provides file sizes and SHA-256 digests. Repeated output
+dumps, failed attempts, retry logs, and exploratory runs are excluded from the review copy.
 
 ## Interpretation limits
 
 - Formal completion is not treated as independent output validation.
-- Additional validation is retained for Q11, Q14, Q16, Q21, and Q22.
-- Entity global zero counts establish that no checked duplicate was found; they do not show native TigerGraph enforcement or a retained positive-control test.
+- Independent SF 0.01 source-data validation is retained for one representative parameter case from each of Q1, Q3, Q6, Q7, and Q18; additional checks cover Q11, Q14, Q16, Q21, and Q22.
+- Entity global zero counts and reversible positive controls support the implemented detectors; they do not show native TigerGraph enforcement.
 - Referential Integrity cleanup checks do not constitute a per-vertex before/after audit.
-- The included RF series is the historical fixed-batch experiment with 15 Orders per round at every scale.
+- The included RF series is the completed scale-dependent experiment with 15, 150, and 1,500 Orders per round at SF 0.01, 0.1, and 1. The retained full-project sources are `sf001_graph/20261022_171854_008909`, `sf01_graph/20261022_190332_704175`, and `sf1_graph/20261023_005208_810832`.

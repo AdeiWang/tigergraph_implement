@@ -6,13 +6,13 @@ This repository is not presented as an independently maintained open-source pack
 adaptation of the Neo4j reference workload rather than a line-for-line port or a controlled
 database-product benchmark.
 
-It covers TPC-H Q1--Q22 at scale factors 0.01, 0.1, and 1; Entity Integrity checks; the Cc, Oc, Pc, and Sc Referential Integrity workloads; and an adapted RF1/RF2 graph-maintenance workload. TPC-H data, full raw results, dissertation files, container data, and credentials are not included.
+It covers TPC-H Q1--Q22 at scale factors 0.01, 0.1, and 1; Entity Integrity checks; the Cc, Oc, Pc, and Sc Referential Integrity workloads; and an adapted RF1/RF2 graph-maintenance workload. TPC-H data, Docker data, dissertation files, credentials, and diagnostic logs are not included.
 
 ## Environment
 
 - TigerGraph Community Edition 4.2.4
 - Python 3.11.9
-- Docker Desktop on Windows 10
+- Docker Desktop on Windows 11
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -28,6 +28,7 @@ referential_integrity/              Referential Integrity workloads
 results/q*/                         Parameter schedules for the 20 runs
 examples/                            Small result summary
 results_summary/                     Module-level formal summaries and provenance
+evidence/                            Curated raw, summary, manifest, and correctness records
 figures/                             Selected result and schema figures (PNG and PDF)
 docs/                                Experiment and migration notes
 ```
@@ -89,12 +90,18 @@ The RF scripts create and delete the vertices and relationships needed for this 
 
 `examples/project_final_master_summary.csv` is a snapshot of the dissertation's retained
 formal summary. Times are milliseconds and, unless a row says otherwise, are the mean of the
-middle ten values after sorting 20 runs and trimming five values from each side. It is an
-aggregate table, not raw per-run evidence. Full timestamped results are not included because
-they are large. Parameter schedules under `results/q*/` are included so the same inputs can
-be reused.
+middle ten values after sorting 20 runs and trimming five values from each side.
+
+`evidence/` contains the compact formal evidence set: per-run raw timings and summaries for
+Q1--Q22 at all three scales, Entity and Referential Integrity records, completed RF1/RF2
+runs, and the retained correctness checks. `evidence/evidence_manifest.csv` records the size
+and SHA-256 digest of every included file, while `evidence/query_source_map.csv` identifies
+the full-project source selected for each query result. Failed attempts, retry logs, repeated
+output dumps, and exploratory results are omitted.
 
 Module-level tables and evidence qualifications are available under `results_summary/`.
+The same directory includes the cross-scale query and integrity-growth comparison tables used
+to generate the dissertation's Neo4j--TigerGraph scaling figures.
 Selected figures are available as both PNG previews and PDF originals under `figures/`.
 
 ## Results overview

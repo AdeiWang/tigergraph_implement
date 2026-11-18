@@ -1,0 +1,13 @@
+{
+  "query": "Q21",
+  "variant": "neo4j-compatible",
+  "installed_query": "q21_tigergraph_neo4j_compatible",
+  "total_runs": 20,
+  "trim_each_side": 5,
+  "used_runs": 10,
+  "mean_ms": 87.6,
+  "min_kept_ms": 83.0,
+  "max_kept_ms": 97.0,
+  "timing_metric": "query_status.elapsedTime",
+  "postprocessing_timed": false
+}

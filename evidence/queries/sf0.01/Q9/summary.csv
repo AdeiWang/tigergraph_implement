@@ -1,0 +1,2 @@
+query,scale_factor,random_seed,total_runs,trim_each_side,used_runs,mean_ms,min_kept_ms,max_kept_ms,compatibility_note
+Q9,0.01,42,20,5,10,60.6,58,66,"TigerGraph uses instr(p.p_name, $selected_color) >= 0 because CONTAINS does not accept a query parameter."

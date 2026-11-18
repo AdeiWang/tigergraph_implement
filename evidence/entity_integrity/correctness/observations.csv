@@ -1,0 +1,7 @@
+entity,stage,violation_count
+PartSupp,baseline,0
+PartSupp,duplicate_injected,2
+PartSupp,cleanup,0
+Lineitem,baseline,0
+Lineitem,duplicate_injected,2
+Lineitem,cleanup,0

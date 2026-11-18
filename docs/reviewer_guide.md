@@ -1,8 +1,8 @@
 # Reviewer guide
 
 This repository is the compact review copy of the TigerGraph implementation used in the
-dissertation. It excludes generated TPC-H data, Docker volumes, full timestamped raw-result
-directories, and dissertation source files.
+dissertation. It excludes generated TPC-H data, Docker volumes, diagnostic logs, and
+dissertation source files. The retained formal evidence is included under `evidence/`.
 
 ## Suggested inspection route
 
@@ -13,8 +13,9 @@ directories, and dissertation source files.
 5. Inspect Q11, Q21, and Q22 together with their specialised runners; these queries cross database/client execution boundaries.
 6. Inspect the Entity and Referential Integrity READMEs for the separation of performance timing and correctness checks.
 7. Inspect `examples/project_final_master_summary.csv` for the aggregate dissertation results.
-8. Inspect `results_summary/` for module-level tables and result provenance.
-9. Inspect `figures/` for the selected schema and experimental-result figures.
+8. Inspect `evidence/` for the selected raw timings, summaries, manifests, and correctness records.
+9. Inspect `results_summary/` for module-level tables and result provenance.
+10. Inspect `figures/` for the selected schema and experimental-result figures.
 
 For correspondence with the reference Neo4j repository, see
 `docs/reference_mapping.md`. For an end-to-end command order, see
@@ -37,8 +38,8 @@ require specialised client-side finalisation. Their entry point is
 ## Evidence boundaries
 
 - Formal execution records exist for Q1--Q22 at SF 0.01, 0.1, and 1.
-- Additional output or independent validation is retained for Q11, Q14, Q16, Q21, and Q22.
-- Entity Integrity global checks report whether duplicate conceptual keys were found; they do not demonstrate native key enforcement.
+- Independent SF 0.01 source-data validation is retained for one representative parameter case from each of Q1, Q3, Q6, Q7, and Q18; additional checks cover Q11, Q14, Q16, Q21, and Q22.
+- Entity Integrity global checks and reversible positive controls test duplicate detection; they do not demonstrate native key enforcement.
 - Referential Integrity correctness checks establish cleanup of activation markers and temporary negative keys, not a retained per-vertex before/after audit.
 - RF1/RF2 are adapted graph-maintenance workloads and do not reproduce every official TPC-H refresh-tuple attribute.
 - Cross-system figures support descriptive implementation and scaling comparisons, not an uncontrolled product-speed ranking.

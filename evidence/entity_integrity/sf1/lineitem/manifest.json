@@ -1,0 +1,33 @@
+{
+  "status": "success",
+  "experiment": "entity_integrity_fixed_position_performance",
+  "entity": "LINEITEM",
+  "query": "key_verification_lineitem",
+  "scale_factor": "1",
+  "semantics": "graph",
+  "er_key": "({ORDERS}, {l_linenumber})",
+  "fixed_position": "o_orderkey=1; l_linenumber=9",
+  "runs": 20,
+  "trim_each_side": 5,
+  "timing_metric": "TigerGraph query_status.elapsedTime",
+  "db_hits": "not available; not reported",
+  "definition_file": "C:\\Users\\Adei\\TigerGraph_TPCH\\tigergraph_implementation\\entity_integrity\\lineitem\\key_verification_lineitem.txt",
+  "definition_sha256": "ea218cbed23a5fc71b13eb47b10eb9f180e1af99237e2ead38cae6f17b03998a",
+  "host": "http://localhost:14244",
+  "graph": "TPCH_G",
+  "started_at": "2026-10-07T14:03:43",
+  "finished_at": "2026-10-07T14:04:02",
+  "summary": {
+    "entity": "LINEITEM",
+    "query": "key_verification_lineitem",
+    "scale_factor": "1",
+    "semantics": "graph",
+    "total_runs": 20,
+    "trim_each_side": 5,
+    "used_runs": 10,
+    "mean_ms": 879.1,
+    "min_kept_ms": 852.0,
+    "max_kept_ms": 902.0,
+    "timing_metric": "query_status.elapsedTime"
+  }
+}

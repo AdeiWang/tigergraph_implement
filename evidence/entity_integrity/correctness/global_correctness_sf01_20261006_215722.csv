@@ -1,0 +1,3 @@
+timestamp,scale_factor,semantics,entity,er_key,query,violation_count,status
+20261006_215722,0.1,graph,LINEITEM,"({ORDERS}, {l_linenumber})",global_verify_lineitem,0,PASS
+20261006_215722,0.1,graph,PARTSUPP,"({PART, SUPPLIER}, empty)",global_verify_partsupp,0,PASS

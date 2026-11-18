@@ -1,0 +1,13 @@
+{
+  "scale_factor": "1",
+  "validated_at_utc": "2026-10-06T23:43:18.125786+00:00",
+  "source": "independent original import CSV computation",
+  "checks": [
+    {
+      "query": "Q16",
+      "parameter_sets": 20,
+      "status": "PASS"
+    }
+  ],
+  "q14_final_output": null
+}

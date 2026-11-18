@@ -1,0 +1,31 @@
+{
+  "validation": "independent computation from original SF 0.01 source CSV files",
+  "queries": [
+    {
+      "query": "Q1",
+      "status": "PASS",
+      "rows": 4
+    },
+    {
+      "query": "Q3",
+      "status": "PASS",
+      "rows": 138
+    },
+    {
+      "query": "Q6",
+      "status": "PASS",
+      "rows": 1
+    },
+    {
+      "query": "Q7",
+      "status": "PASS",
+      "rows": 4
+    },
+    {
+      "query": "Q18",
+      "status": "PASS",
+      "rows": 2
+    }
+  ],
+  "status": "PASS"
+}

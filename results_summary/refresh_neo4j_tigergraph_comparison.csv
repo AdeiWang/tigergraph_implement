@@ -1,0 +1,7 @@
+operation,scale_factor,neo4j_graph_ms,tigergraph_ms,neo4j_growth_from_sf001,tigergraph_growth_from_sf001,comparison_scope
+RF1,0.01,11,5028.4,1.000,1.000,descriptive only
+RF1,0.1,87,44508.9,7.909,8.852,descriptive only
+RF1,1,1189,444659.6,108.091,88.432,descriptive only
+RF2,0.01,2,1079.0,1.000,1.000,descriptive only
+RF2,0.1,32,17093.5,16.000,15.842,descriptive only
+RF2,1,497,841308.6,248.500,779.712,descriptive only

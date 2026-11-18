@@ -1,0 +1,52 @@
+CREATE OR REPLACE QUERY ei_pc_create_partsupp_gsql(STRING test_id)
+FOR GRAPH TPCH_G {
+  INSERT INTO G_PARTSUPP (
+    PRIMARY_ID, ps_availqty, ps_supplycost, ps_comment
+  ) VALUES (
+    test_id, 0, 0.0, "entity-integrity-positive-control"
+  );
+  INSERT INTO G_PARTSUPP_PART (FROM, TO)
+    VALUES (test_id G_PARTSUPP, "P000001" G_PART);
+  INSERT INTO G_PARTSUPP_SUPPLIER (FROM, TO)
+    VALUES (test_id G_PARTSUPP, "S000002" G_SUPPLIER);
+}
+
+CREATE OR REPLACE QUERY ei_pc_delete_partsupp_gsql(STRING test_id)
+FOR GRAPH TPCH_G {
+  AllPartsSupp = {G_PARTSUPP.*};
+  TestPartsSupp = SELECT ps
+                  FROM AllPartsSupp:ps
+                  WHERE ps.ps_comment == "entity-integrity-positive-control";
+  DELETE ps FROM TestPartsSupp:ps;
+}
+
+CREATE OR REPLACE QUERY ei_pc_create_lineitem_gsql(STRING test_id)
+FOR GRAPH TPCH_G {
+  INSERT INTO G_LINEITEM (
+    PRIMARY_ID, l_linenumber, l_quantity, l_extendedprice,
+    l_discount, l_tax, l_returnflag, l_linestatus,
+    l_shipinstruct, l_shipmode, l_comment
+  ) VALUES (
+    test_id, 1, 0.0, 0.0,
+    0.0, 0.0, "N", "O",
+    "NONE", "NONE", "entity-integrity-positive-control"
+  );
+  INSERT INTO G_LINEITEM_ORDERS (FROM, TO)
+    VALUES (test_id G_LINEITEM, "O000001" G_ORDERS);
+  INSERT INTO G_LINEITEM_PARTSUPP (FROM, TO)
+    VALUES (test_id G_LINEITEM, "PS006208" G_PARTSUPP);
+}
+
+CREATE OR REPLACE QUERY ei_pc_delete_lineitem_gsql(STRING test_id)
+FOR GRAPH TPCH_G {
+  AllLineitems = {G_LINEITEM.*};
+  TestLineitems = SELECT l
+                  FROM AllLineitems:l
+                  WHERE l.l_comment == "entity-integrity-positive-control";
+  DELETE l FROM TestLineitems:l;
+}
+
+INSTALL QUERY ei_pc_create_partsupp_gsql
+INSTALL QUERY ei_pc_delete_partsupp_gsql
+INSTALL QUERY ei_pc_create_lineitem_gsql
+INSTALL QUERY ei_pc_delete_lineitem_gsql

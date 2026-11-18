@@ -1,0 +1,2 @@
+INSTALL QUERY global_verify_partsupp
+INSTALL QUERY global_verify_lineitem

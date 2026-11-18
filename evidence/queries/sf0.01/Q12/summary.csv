@@ -1,0 +1,2 @@
+query,installed_query,scale_factor,semantics,semantic_status,total_runs,trim_each_side,used_runs,mean_ms,min_kept_ms,max_kept_ms,timing_metric
+Q12,q12_tigergraph,0.01,graph,formal,20,5,10,17.8,17.0,19.0,query_status.elapsedTime

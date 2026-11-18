@@ -1,0 +1,57 @@
+{
+  "status": "pass",
+  "host": "http://localhost:14240",
+  "graph": "TPCH_G",
+  "detectors": "installed openCypher global verification queries",
+  "test_mutations": "GSQL correctness-only setup and cleanup queries",
+  "test_ids": {
+    "partsupp": "__ei_positive_control_partsupp__",
+    "lineitem": "__ei_positive_control_lineitem__"
+  },
+  "duplicated_components": {
+    "partsupp": [
+      "P000001",
+      "S000002"
+    ],
+    "lineitem": [
+      "O000001",
+      "line_number=1",
+      "PS006208"
+    ]
+  },
+  "error": "",
+  "cleanup_error": "",
+  "observations": [
+    {
+      "entity": "PartSupp",
+      "stage": "baseline",
+      "violation_count": 0
+    },
+    {
+      "entity": "PartSupp",
+      "stage": "duplicate_injected",
+      "violation_count": 2
+    },
+    {
+      "entity": "PartSupp",
+      "stage": "cleanup",
+      "violation_count": 0
+    },
+    {
+      "entity": "Lineitem",
+      "stage": "baseline",
+      "violation_count": 0
+    },
+    {
+      "entity": "Lineitem",
+      "stage": "duplicate_injected",
+      "violation_count": 2
+    },
+    {
+      "entity": "Lineitem",
+      "stage": "cleanup",
+      "violation_count": 0
+    }
+  ],
+  "finished_at": "2026-11-10T13:48:09"
+}

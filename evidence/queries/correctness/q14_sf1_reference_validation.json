@@ -1,0 +1,13 @@
+{
+  "scale_factor": "1",
+  "validated_at_utc": "2026-10-07T00:01:54.218234+00:00",
+  "source": "independent original import CSV computation",
+  "checks": [
+    {
+      "query": "Q14",
+      "parameter_sets": 20,
+      "status": "PASS"
+    }
+  ],
+  "q14_final_output": "C:\\Users\\Adei\\TigerGraph_TPCH\\tigergraph_implementation\\results\\query_benchmarks_final\\correctness\\q14_sf1_final_outputs\\q14_final_percentages.csv"
+}

@@ -90,5 +90,6 @@ python queries_and_refresh_operations/rf1_rf2/scripts/run_rf1_rf2_tigergraph.py 
 python queries_and_refresh_operations/rf1_rf2/scripts/run_rf1_rf2_tigergraph.py --scale 0.01 --formal
 ```
 
-The included summary records the retained historical fixed-batch experiment. It is an adapted
+The included summary records the completed scale-dependent experiment: 15, 150, and 1,500
+Orders per formal round at SF 0.01, 0.1, and 1, respectively. It remains an adapted
 graph-maintenance workload rather than a complete implementation of official TPC-H refresh tuples.

@@ -1,0 +1,49 @@
+{
+  "validation": "independent computation from original TigerGraph import CSV files",
+  "scale_factor": "0.01",
+  "validated_at_utc": "2026-10-06T01:58:07.544725+00:00",
+  "checks": [
+    {
+      "query": "Q21",
+      "variant": "neo4j_compatible",
+      "status": "PASS",
+      "distinct_parameter_sets": 14
+    },
+    {
+      "query": "Q21",
+      "variant": "tpch_corrected",
+      "status": "PASS",
+      "distinct_parameter_sets": 14
+    },
+    {
+      "query": "Q22",
+      "variant": "tpch_corrected",
+      "status": "PASS",
+      "codes": [
+        "13",
+        "31",
+        "23",
+        "29",
+        "30",
+        "18",
+        "17"
+      ],
+      "result_rows": 7
+    },
+    {
+      "query": "Q22",
+      "variant": "neo4j_compatible",
+      "status": "PASS",
+      "codes": [
+        "25",
+        "23",
+        "11",
+        "14",
+        "13",
+        "30",
+        "28"
+      ],
+      "result_rows": 7
+    }
+  ]
+}

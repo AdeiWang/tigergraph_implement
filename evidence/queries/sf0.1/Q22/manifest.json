@@ -1,0 +1,22 @@
+{
+  "query": "Q22",
+  "scale_factor": "0.1",
+  "variant": "neo4j-compatible",
+  "installed_queries": "q22_customers_tigergraph+q22_order_customers_tigergraph",
+  "database_total_runs": 20,
+  "database_trim_each_side": 5,
+  "database_used_runs": 10,
+  "database_mean_ms": 108.3,
+  "database_min_kept_ms": 102.0,
+  "database_max_kept_ms": 117.0,
+  "end_to_end_total_runs": 20,
+  "end_to_end_trim_each_side": 5,
+  "end_to_end_used_runs": 10,
+  "end_to_end_mean_ms": 153.907,
+  "end_to_end_min_kept_ms": 144.052,
+  "end_to_end_max_kept_ms": 160.102,
+  "primary_comparison_metric": "end_to_end_mean_ms",
+  "database_timing_metric": "sum of query_status.elapsedTime",
+  "code_selection": "inferred first-seven Neo4j scan order",
+  "postprocessing_in_end_to_end": true
+}

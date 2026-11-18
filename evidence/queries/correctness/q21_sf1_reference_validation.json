@@ -1,0 +1,13 @@
+{
+  "validation": "independent computation from original TigerGraph import CSV files",
+  "scale_factor": "1",
+  "validated_at_utc": "2026-10-07T00:03:13.204509+00:00",
+  "checks": [
+    {
+      "query": "Q21",
+      "variant": "neo4j_compatible",
+      "status": "PASS",
+      "distinct_parameter_sets": 14
+    }
+  ]
+}

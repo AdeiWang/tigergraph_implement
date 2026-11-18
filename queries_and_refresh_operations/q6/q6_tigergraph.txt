@@ -1,8 +1,8 @@
 CREATE OR REPLACE OPENCYPHER QUERY q6_tigergraph(
     DATETIME start_date,
     DATETIME end_date,
-    FLOAT min_discount,
-    FLOAT max_discount,
+    DOUBLE min_discount,
+    DOUBLE max_discount,
     INT selected_quantity
 )
 FOR GRAPH TPCH_G {

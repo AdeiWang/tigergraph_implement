@@ -24,7 +24,7 @@ TigerGraph selects a sorted window from a seeded offset. This differs from the g
 
 An RF result is the sum of the installed openCypher calls in that workload. The runner checks new vertices and typed edges after RF1, then checks their removal after RF2. Setup and correctness checks are not included in database time.
 
-The compact RF values in `examples/project_final_master_summary.csv` belong to the retained
-fixed-batch experiment: every scale uses 15 Orders per round and the same total query-call
-schedule. They measure the same maintenance batch against differently sized base graphs and
-must not be interpreted as a scale-dependent refresh-batch experiment.
+The compact RF values in `examples/project_final_master_summary.csv` belong to the completed
+scale-dependent experiment. Each round uses 15, 150, and 1,500 Orders at SF 0.01, 0.1, and 1,
+respectively. The historical fixed 15-Order series remains in the full project as migration
+history and is not used for the final scaling result.

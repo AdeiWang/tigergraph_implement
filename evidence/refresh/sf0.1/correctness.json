@@ -1,0 +1,422 @@
+[
+  {
+    "run": 1,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 569,
+      "actual_lineitem_vertices": 569,
+      "actual_lineitem_order_edges": 569,
+      "actual_lineitem_partsupp_edges": 569,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 2,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 554,
+      "actual_lineitem_vertices": 554,
+      "actual_lineitem_order_edges": 554,
+      "actual_lineitem_partsupp_edges": 554,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 3,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 555,
+      "actual_lineitem_vertices": 555,
+      "actual_lineitem_order_edges": 555,
+      "actual_lineitem_partsupp_edges": 555,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 4,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 519,
+      "actual_lineitem_vertices": 519,
+      "actual_lineitem_order_edges": 519,
+      "actual_lineitem_partsupp_edges": 519,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 5,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 516,
+      "actual_lineitem_vertices": 516,
+      "actual_lineitem_order_edges": 516,
+      "actual_lineitem_partsupp_edges": 516,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 6,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 513,
+      "actual_lineitem_vertices": 513,
+      "actual_lineitem_order_edges": 513,
+      "actual_lineitem_partsupp_edges": 513,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 7,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 536,
+      "actual_lineitem_vertices": 536,
+      "actual_lineitem_order_edges": 536,
+      "actual_lineitem_partsupp_edges": 536,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 8,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 527,
+      "actual_lineitem_vertices": 527,
+      "actual_lineitem_order_edges": 527,
+      "actual_lineitem_partsupp_edges": 527,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 9,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 474,
+      "actual_lineitem_vertices": 474,
+      "actual_lineitem_order_edges": 474,
+      "actual_lineitem_partsupp_edges": 474,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 10,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 527,
+      "actual_lineitem_vertices": 527,
+      "actual_lineitem_order_edges": 527,
+      "actual_lineitem_partsupp_edges": 527,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 11,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 489,
+      "actual_lineitem_vertices": 489,
+      "actual_lineitem_order_edges": 489,
+      "actual_lineitem_partsupp_edges": 489,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 12,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 529,
+      "actual_lineitem_vertices": 529,
+      "actual_lineitem_order_edges": 529,
+      "actual_lineitem_partsupp_edges": 529,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 13,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 510,
+      "actual_lineitem_vertices": 510,
+      "actual_lineitem_order_edges": 510,
+      "actual_lineitem_partsupp_edges": 510,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 14,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 482,
+      "actual_lineitem_vertices": 482,
+      "actual_lineitem_order_edges": 482,
+      "actual_lineitem_partsupp_edges": 482,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 15,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 506,
+      "actual_lineitem_vertices": 506,
+      "actual_lineitem_order_edges": 506,
+      "actual_lineitem_partsupp_edges": 506,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 16,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 521,
+      "actual_lineitem_vertices": 521,
+      "actual_lineitem_order_edges": 521,
+      "actual_lineitem_partsupp_edges": 521,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 17,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 516,
+      "actual_lineitem_vertices": 516,
+      "actual_lineitem_order_edges": 516,
+      "actual_lineitem_partsupp_edges": 516,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 18,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 517,
+      "actual_lineitem_vertices": 517,
+      "actual_lineitem_order_edges": 517,
+      "actual_lineitem_partsupp_edges": 517,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 19,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 518,
+      "actual_lineitem_vertices": 518,
+      "actual_lineitem_order_edges": 518,
+      "actual_lineitem_partsupp_edges": 518,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  },
+  {
+    "run": 20,
+    "after_rf1": {
+      "passed": true,
+      "expected_orders": 150,
+      "actual_order_vertices": 150,
+      "actual_order_customer_edges": 150,
+      "expected_lineitems": 538,
+      "actual_lineitem_vertices": 538,
+      "actual_lineitem_order_edges": 538,
+      "actual_lineitem_partsupp_edges": 538,
+      "failures": []
+    },
+    "after_rf2": {
+      "passed": true,
+      "remaining_order_count": 0,
+      "remaining_lineitem_count": 0,
+      "remaining_orders": [],
+      "remaining_lineitems": []
+    }
+  }
+]

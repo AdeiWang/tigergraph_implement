@@ -1,9 +1,10 @@
 workload,evidence,scope,conclusion
+Q1 Q3 Q6 Q7 Q18,independent source-data validation,representative SF 0.01 parameter cases,all checked outputs passed
 Q11,independent source-data validation,20 outputs at each of three scales,all checked outputs passed
 Q14,independent percentage calculation,retained formal outputs,checked percentages passed
 Q16,independent source-data validation,retained formal outputs,checked outputs passed
 Q21,independent final-output validation,retained complete CSV outputs,checked outputs passed
 Q22,independent final-output validation,retained complete CSV outputs,checked outputs passed
-Entity Integrity,global duplicate-key queries,Lineitem and PartSupp at three scales,violation_count=0
+Entity Integrity,global duplicate-key queries plus reversible positive control,"Lineitem and PartSupp at three scales; injected duplicates at SF 0.01",violation_count=0 on loaded graphs and both detectors responded 0-to-2-to-0
 Referential Integrity,post-update cleanup checks,Cc Oc Pc and Sc formal runs,no active markers or temporary negative keys remained
 RF1 and RF2,round-level state checks,20 rounds at each scale,all recorded rounds passed

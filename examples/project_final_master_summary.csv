@@ -4,7 +4,7 @@ Queries,Q2,,query_status.elapsedTime,50.7,142.6,1066.1,complete,Neo4j-compatible
 Queries,Q3,,query_status.elapsedTime,16.7,100.7,815.8,complete,
 Queries,Q4,,query_status.elapsedTime,13.1,77.5,738.9,complete,
 Queries,Q5,,query_status.elapsedTime,43.9,234.6,2403.9,complete,
-Queries,Q6,,query_status.elapsedTime,6.2,35.0,261.9,complete,
+Queries,Q6,,query_status.elapsedTime,10.3,29.5,228.7,complete,corrected DOUBLE discount bounds; independent SF 0.01 source-data validation PASS
 Queries,Q7,,query_status.elapsedTime,82.6,1017.2,13837.7,complete,superlinear slow-query candidate
 Queries,Q8,,query_status.elapsedTime,57.0,266.5,2762.1,complete,Neo4j-compatible
 Queries,Q9,,query_status.elapsedTime,60.6,605.3,6997.0,complete,
@@ -24,8 +24,8 @@ Queries,Q22,,sum of two query_status.elapsedTime values,24.0,108.3,1213.4,comple
 Query Diagnostics,Q22 retrieval and Python,,partial retrieval-plus-finalisation interval,55.018,153.907,1304.841,diagnostic,starts after timed asynchronous submissions; not a complete end-to-end time
 Entity Integrity,LINEITEM,,query_status.elapsedTime,28.8,113.0,879.1,complete,global violation_count=0 at all scales
 Entity Integrity,PARTSUPP,,query_status.elapsedTime,16.6,23.9,108.3,complete,targeted three-scale rerun 2026-10-20; global violation_count=0 at all scales
-RF,RF1,,sum of query_status.elapsedTime,5303.5,4846.6,4719.2,complete,historical fixed batch of 15 Orders per round at every scale; 3804 calls; correctness PASS 20/20
-RF,RF2,,sum of query_status.elapsedTime,1063.2,1793.3,9034.0,complete,historical fixed batch paired with RF1; 600 calls; correctness PASS 20/20
+RF,RF1,,sum of query_status.elapsedTime,5028.4,44508.9,444659.6,complete,scale-dependent 15/150/1500-Order workload; correctness PASS 20/20 at every scale
+RF,RF2,,sum of query_status.elapsedTime,1079.0,17093.5,841308.6,complete,paired scale-dependent workload; correctness PASS 20/20 at every scale
 Referential Integrity,Cc,0.1%,query_status.elapsedTime,26.6,25.5,27.7,complete,
 Referential Integrity,Cc,1%,query_status.elapsedTime,24.6,26.1,33.7,complete,
 Referential Integrity,Cc,10%,query_status.elapsedTime,26.0,30.5,74.3,complete,

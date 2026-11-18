@@ -1,0 +1,2 @@
+entity,query,scale_factor,semantics,total_runs,trim_each_side,used_runs,mean_ms,min_kept_ms,max_kept_ms,timing_metric
+LINEITEM,key_verification_lineitem,0.1,graph,20,5,10,113.0,104.0,117.0,query_status.elapsedTime

@@ -1,0 +1,23 @@
+{
+  "query": "Q11",
+  "scale_factor": "0.01",
+  "variant": "two-stage",
+  "installed_queries": "q11_threshold_tigergraph+q11_values_tigergraph",
+  "database_total_runs": 20,
+  "database_trim_each_side": 5,
+  "database_used_runs": 10,
+  "database_mean_ms": 43.0,
+  "database_min_kept_ms": 41.0,
+  "database_max_kept_ms": 46.0,
+  "round_wall_total_runs": 20,
+  "round_wall_trim_each_side": 5,
+  "round_wall_used_runs": 10,
+  "round_wall_mean_ms": 233.686,
+  "round_wall_min_kept_ms": 207.248,
+  "round_wall_max_kept_ms": 261.954,
+  "primary_comparison_metric": "database_mean_ms",
+  "database_timing_metric": "sum of two query_status.elapsedTime values",
+  "python_orchestration": "passes threshold between two openCypher queries and saves complete output",
+  "round_wall_scope": "two detached timed calls plus two repeated synchronous calls used to retrieve threshold and output; not a one-pass end-to-end metric",
+  "formal": true
+}

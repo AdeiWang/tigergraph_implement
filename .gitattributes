@@ -5,3 +5,6 @@
 *.gsql text eol=lf
 *.cypher text eol=lf
 *.txt text eol=lf
+
+# Preserve the retained experiment records byte-for-byte so manifest hashes remain stable.
+evidence/** -text
